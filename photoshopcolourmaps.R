@@ -64,10 +64,10 @@ for (j in 1:length(cmID)) {  # loop through Viridis colourmaps
     escribir_bin(ACVVERSION, acv)  # ACV version
     escribir_bin(NCURVES, acv)  # count of curves
     
-    # RGB curve
+    # RGB NULL curve
     escribir_bin(2, acv)  # points in curve
-    escribir_point(0, 0, acv)  # 0
-    escribir_point(255, 255, acv)  # 0
+    escribir_point(0, 0, acv)  # (0,0)
+    escribir_point(255, 255, acv)  # (255,255)
     
     # R, G and B curves
     for (curve in 1:3) {
