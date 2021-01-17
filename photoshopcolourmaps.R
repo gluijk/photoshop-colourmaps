@@ -21,16 +21,15 @@ escribir_point=function(x, y, fichero) {
 
 # Viridis colourmap library
 # https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
-# opt = A: magma; B: inferno; C: plasma; D: viridis; E: cividis
-cmID=c("A", "B", "C", "D", "E")
+# opt = A: magma, B: inferno, C: plasma, D: viridis, E: cividis
 cmname=c("magma", "inferno", "plasma", "viridis", "cividis")
 
 NCOL=16  # IMPORTANT: 16 is the max number of points allowed by Photoshop
 colourmap=array(0,c(NCOL,3))
-for (j in 1:length(cmID)) {  # loop through viridis colourmaps
+for (j in 1:length(cmname)) {  # loop through viridis colourmaps
     
     # Obtain viridis colours in hex and convert to int
-    colour=viridis(NCOL, opt=cmID[j])  # 16 values equally spaced (gap=17)
+    colour=viridis(NCOL, opt=cmname[j])  # 16 values equally spaced (gap=17)
     for (i in 1:3) {
         colourmap[,i]=strtoi(paste0("0x",substr(colour,start=i*2,stop=i*2+1)))
     }
