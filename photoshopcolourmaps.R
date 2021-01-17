@@ -28,9 +28,11 @@ cmname=c("magma", "inferno", "plasma", "viridis", "cividis")
 NCOL=16  # IMPORTANT: 16 is the max number of points allowed by Photoshop
 colourmap=array(0,c(NCOL,3))
 for (j in 1:length(cmID)) {  # loop through Viridis colourmaps
-    colour=viridis(NCOL, opt=cmID[j])
+    
+    # Obtain viridis colours in hex and convert to int
+    colour=viridis(NCOL, opt=cmID[j])  # 16 values equally spaced (gap=17)
     for (i in 1:3) {
-        colourmap[,i]=strtoi(paste0("0x",substr(colour, start=i*2, stop=i*2+1)))
+        colourmap[,i]=strtoi(paste0("0x",substr(colour,start=i*2,stop=i*2+1)))
     }
     
     # Output RGB curves
@@ -45,7 +47,6 @@ for (j in 1:length(cmID)) {  # loop through Viridis colourmaps
     
     
     # Write values in ACV curve
-    
     # Adobe ACV format documentation:
     # https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/#50577411_pgfId-1056330
     
