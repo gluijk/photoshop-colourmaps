@@ -1,5 +1,6 @@
-# Photoshop curves for perceptually uniform colourmaps (VIRIDIS)
+# Photoshop viridis colourmaps
 # www.overfitting.net
+# https://www.overfitting.net/2021/01/mapas-de-color-viridis-en-photoshop.html
 
 library(png)
 library(viridis)
