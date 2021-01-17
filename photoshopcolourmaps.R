@@ -19,7 +19,7 @@ escribir_point=function(x, y, fichero) {
 }
 
 
-# Viridis colourmap library
+# Viridis colourmap library:
 # https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 # opt = A: magma, B: inferno, C: plasma, D: viridis, E: cividis
 cmname=c("magma", "inferno", "plasma", "viridis", "cividis")
@@ -46,10 +46,10 @@ for (j in 1:length(cmname)) {  # loop through viridis colourmaps
     
     
     # Write values in ACV curve
+    
     # Adobe ACV format documentation:
     # https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/#50577411_pgfId-1056330
-    
-    # Count of points in the curve (short integer from 2...19) -> NO SON 19 SINO 16
+    # Count of points in the curve (short integer from 2...19) -> NO 19 SINO 16
     # Curve points. Each curve point is a pair of short integers
     # where the first number is the output value (vertical coordinate on
     # the Curves dialog graph) and the second is the input value.
