@@ -46,9 +46,7 @@ for (j in 1:length(cmname)) {  # loop through viridis colourmaps
     dev.off()
     
     
-    # Write values in ACV curve
-    
-    # Adobe ACV format documentation:
+    # Write values in ACV curves:
     # https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/#50577411_pgfId-1056330
     # Count of points in the curve (short integer from 2...19) -> NO 19 SINO 16
     # Curve points. Each curve point is a pair of short integers
