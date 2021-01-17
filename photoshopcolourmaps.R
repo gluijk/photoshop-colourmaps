@@ -65,13 +65,13 @@ for (j in 1:length(cmname)) {  # loop through viridis colourmaps
     escribir_bin(NCURVES, acv)  # count of curves
     
     # RGB curve (NULL)
-    escribir_bin(2, acv)  # points in curve
+    escribir_bin(2, acv)  # 2cpoints in curve
     escribir_point(0, 0, acv)  # (0,0)
     escribir_point(255, 255, acv)  # (255,255)
     
     # R, G and B curves
     for (curve in 1:3) {
-        escribir_bin(NCOL, acv)  # points in curve
+        escribir_bin(NCOL, acv)  # NCOL points in curve
         for (i in 1:NCOL) {
             escribir_point(round(255/(NCOL-1)*(i-1)), colourmap[i,curve], acv)
         }
