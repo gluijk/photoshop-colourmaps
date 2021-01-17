@@ -27,7 +27,7 @@ cmname=c("magma", "inferno", "plasma", "viridis", "cividis")
 
 NCOL=16  # IMPORTANT: 16 is the max number of points allowed by Photoshop
 colourmap=array(0,c(NCOL,3))
-for (j in 1:length(cmID)) {  # loop through Viridis colourmaps
+for (j in 1:length(cmID)) {  # loop through viridis colourmaps
     
     # Obtain viridis colours in hex and convert to int
     colour=viridis(NCOL, opt=cmID[j])  # 16 values equally spaced (gap=17)
