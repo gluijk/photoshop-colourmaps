@@ -1,2 +1,2 @@
 # photoshop-colourmaps
-Photoshop curves for perceptually uniform colourmaps (VIRIDIS)
+Photoshop curves for viridis perceptually uniform colourmaps and R built-in colourmaps
