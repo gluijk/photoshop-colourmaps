@@ -1,4 +1,4 @@
-# Photoshop viridis colourmaps
+# Photoshop curves for viridis and R built-in colourmaps
 # www.overfitting.net
 # https://www.overfitting.net/2021/01/mapas-de-color-viridis-en-photoshop.html
 
@@ -22,24 +22,31 @@ escribir_point=function(x, y, fichero) {
 
 # Viridis colourmap library:
 # https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
-# opt = A: magma, B: inferno, C: plasma, D: viridis, E: cividis
-cmname=c("magma", "inferno", "plasma", "viridis", "cividis")
+# plus standard built-in R colourmaps
+cmname=c("magma", "inferno", "plasma", "viridis", "cividis",
+         "rainbow", "heat.colors", "terrain.colors", "topo.colors", "cm.colors")
+NCOLMAPS=length(cmname)
+cmfun=list()  # list containing the functions to build the colourmaps
+for (i in 1:NCOLMAPS) cmfun[[i]]=get(cmname[i])
 
-NCOL=16  # IMPORTANT: 16 is the max number of points allowed by Photoshop
+NCOL=16  # max number of points allowed by Photoshop in a curve
 colourmap=array(0,c(NCOL,3))
-for (j in 1:length(cmname)) {  # loop through viridis colourmaps
+for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     
-    # Obtain viridis colours in hex and convert to int
-    colour=viridis(NCOL, opt=cmname[j])  # 16 values equally spaced (gap=17)
-    for (i in 1:3) {
-        colourmap[,i]=strtoi(paste0("0x",substr(colour,start=i*2,stop=i*2+1)))
-    }
+    # Obtain colours in hex and convert to int
+    colourmap=t(col2rgb(cmfun[[i]](NCOL)))
+    
+    # Another way to obtain the colourmap RGB values
+    # colour=cmfun[[i]](NCOL)
+    # for (j in 1:3) {
+    #     colourmap[,j]=strtoi(paste0("0x",substr(colour,start=j*2,stop=j*2+1)))
+    #  }
     
     # Output RGB curves
-    png(paste0(cmname[j],'.png'))
+    png(paste0(cmname[i],'.png'))
     x=seq(from=0, to=1, length.out=NCOL)
     plot(x, colourmap[,1]/255, type='b', col='red',
-         main=cmname[j], ylab='y', xlim=c(0,1), ylim=c(0,1))
+         main=cmname[i], ylab='y', xlim=c(0,1), ylim=c(0,1))
     lines(x, colourmap[,2]/255, type='b', col='green')
     lines(x, colourmap[,3]/255, type='b', col='blue')
     abline(h=c(0,1), v=c(0,1), col='gray', lty='dotted')
@@ -55,7 +62,7 @@ for (j in 1:length(cmname)) {  # loop through viridis colourmaps
     # All coordinates have range 0 to 255
 
     # Build ACV file
-    acv=file(paste0(cmname[j],'.acv'), 'wb')
+    acv=file(paste0(cmname[i],'.acv'), 'wb')
     
     # Write header
     ACVVERSION=4  # version 4 = count of curves in the file
@@ -71,8 +78,8 @@ for (j in 1:length(cmname)) {  # loop through viridis colourmaps
     # R, G and B curves
     for (curve in 1:3) {
         escribir_bin(NCOL, acv)  # NCOL points in curve
-        for (i in 1:NCOL) {
-            escribir_point(round(255/(NCOL-1)*(i-1)), colourmap[i,curve], acv)
+        for (j in 1:NCOL) {
+            escribir_point(round(255/(NCOL-1)*(j-1)), colourmap[j,curve], acv)
         }
     }
     
