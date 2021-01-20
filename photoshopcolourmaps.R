@@ -33,10 +33,10 @@ NCOL=16  # max number of points allowed by Photoshop in a curve
 colourmap=array(0,c(NCOL,3))
 for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     
-    # Obtain colours in hex and convert to int
+    # Obtain RGB values in hex and convert to int
     colourmap=t(col2rgb(cmfun[[i]](NCOL)))
     
-    # Another way to obtain the colourmap RGB values
+    # Another way to obtain the RGB values
     # colour=cmfun[[i]](NCOL)
     # for (j in 1:3) {
     #     colourmap[,j]=strtoi(paste0("0x",substr(colour,start=j*2,stop=j*2+1)))
