@@ -29,6 +29,7 @@ NCOLMAPS=length(cmname)
 cmfun=list()  # list containing the functions to build the colourmaps
 for (i in 1:NCOLMAPS) cmfun[[i]]=get(cmname[i])
 
+
 NCOL_ORG=256  # number of possible input values in a Photoshop curve
 NCOL=16  # max number of points allowed in a Photoshop curve
 WIDTH=(NCOL_ORG-1)/(NCOL-1)  # must be an integer
