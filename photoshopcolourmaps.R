@@ -40,9 +40,7 @@ for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     # Subsample 16 RGB values (pick 1 sample every WIDTH samples)
     colourmap=colourmap[(row(colourmap)-1) %%  WIDTH == 0]
     dim(colourmap)=c(NCOL,3)
-    
-    colourmap=t(col2rgb(cmfun[[i]](NCOL)))
-    
+
     # NOTE1: doing just colourmap=t(col2rgb(cmfun[[i]](NCOL))) with NCOL=16
     # leads to offset errors in all built-in colourmaps (viridis are fine)
     # hence we subsample from NCOL_ORG=256 
