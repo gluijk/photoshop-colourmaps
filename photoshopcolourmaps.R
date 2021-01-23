@@ -29,14 +29,25 @@ NCOLMAPS=length(cmname)
 cmfun=list()  # list containing the functions to build the colourmaps
 for (i in 1:NCOLMAPS) cmfun[[i]]=get(cmname[i])
 
-NCOL=16  # max number of points allowed by Photoshop in a curve
-colourmap=array(0,c(NCOL,3))
+NCOL_ORG=256  # number of possible input values in a Photoshop curve
+NCOL=16  # max number of points allowed in a Photoshop curve
+WIDTH=(NCOL_ORG-1)/(NCOL-1)  # must be an integer
+
 for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     
-    # Obtain RGB values in hex and convert to int
+    # Obtain 256 RGB values in hex and convert to int
+    colourmap=t(col2rgb(cmfun[[i]](NCOL_ORG)))
+    # Subsample 16 RGB values (pick 1 sample every WIDTH samples)
+    colourmap=colourmap[(row(colourmap)-1) %%  WIDTH == 0]
+    dim(colourmap)=c(NCOL,3)
+    
     colourmap=t(col2rgb(cmfun[[i]](NCOL)))
     
-    # Another way to obtain the RGB values
+    # NOTE1: doing just colourmap=t(col2rgb(cmfun[[i]](NCOL))) with NCOL=16
+    # leads to offset errors in all built-in colourmaps (viridis are fine)
+    # hence we subsample from NCOL_ORG=256 
+    
+    # NOTE2: another way to obtain the RGB values
     # colour=cmfun[[i]](NCOL)
     # for (j in 1:3) {
     #     colourmap[,j]=strtoi(paste0("0x",substr(colour,start=j*2,stop=j*2+1)))
