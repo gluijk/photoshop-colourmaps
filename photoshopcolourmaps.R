@@ -52,7 +52,7 @@ for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     #     colourmap[,j]=strtoi(paste0("0x",substr(colour,start=j*2,stop=j*2+1)))
     #  }
     
-    # Output RGB curves
+    # Plot RGB curves
     png(paste0(cmname[i],'.png'))
     x=seq(from=0, to=1, length.out=NCOL)
     plot(x, colourmap[,1]/255, type='b', col='red',
