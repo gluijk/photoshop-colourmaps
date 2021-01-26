@@ -19,12 +19,18 @@ escribir_point=function(x, y, fichero) {
     writeBin(as.integer(round(x)), fichero, size=1)
 }
 
+# Matlab 'Jet' color palette
+jet.colors=colorRampPalette(
+    c("#00007F", "blue", "#007FFF", "cyan",
+      "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+
 
 # Viridis colourmap library:
 # https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 # plus standard built-in R colourmaps
 cmname=c("magma", "inferno", "plasma", "viridis", "cividis",
-         "rainbow", "heat.colors", "terrain.colors", "topo.colors", "cm.colors")
+         "rainbow", "heat.colors", "terrain.colors", "topo.colors",
+         "cm.colors", "jet.colors")
 NCOLMAPS=length(cmname)
 cmfun=list()  # list containing the functions to build the colourmaps
 for (i in 1:NCOLMAPS) cmfun[[i]]=get(cmname[i])
@@ -54,7 +60,7 @@ for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     
     # Plot RGB curves
     png(paste0(cmname[i],'.png'))
-    x=seq(from=0, to=1, length.out=NCOL)
+    x=seq(from=0, to=1, length.out=nrow(colourmap))
     plot(x, colourmap[,1]/255, type='b', col='red',
          main=cmname[i], ylab='y', xlim=c(0,1), ylim=c(0,1))
     lines(x, colourmap[,2]/255, type='b', col='green')
