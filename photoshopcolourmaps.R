@@ -19,7 +19,7 @@ escribir_point=function(x, y, fichero) {
     writeBin(as.integer(round(x)), fichero, size=1)
 }
 
-# Matlab 'Jet' color palette
+# Matlab 'Jet' colour palette
 jet.colors=colorRampPalette(
     c("#00007F", "blue", "#007FFF", "cyan",
       "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
