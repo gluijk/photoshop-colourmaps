@@ -23,7 +23,7 @@ writePoint=function(x, y, fichero) {
 writePhotoshopACVcurve=function(colourmap, nombreacv) {
     # Adobe Photoshop ACV curve file format:
     # https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/#50577411_pgfId-1056330
-    # Count of points in the curve (short integer from 2...19) -> NO 19 SINO 16
+    # Count of points in the curve (short integer from 2..16)
     # Curve points. Each curve point is a pair of short integers
     # where the first number is the output value (vertical coordinate on
     # the Curves dialog graph) and the second is the input value.
