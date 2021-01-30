@@ -54,7 +54,6 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     close(acv)
 }
 
-
 # Matlab 'Jet' colour palette
 jet.colors=colorRampPalette(
     c("#00007F", "blue", "#007FFF", "cyan",
