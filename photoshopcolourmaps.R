@@ -46,7 +46,7 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     
     # R, G and B curves
     for (curve in 1:3) {
-        writeValue(NPOINTS, acv)  # NCOL points in curve
+        writeValue(NPOINTS, acv)  # NPOINTS points in curve
         for (j in 1:NPOINTS) {
             writePoint(255/(NPOINTS-1)*(j-1), colourmap[j,curve], acv)
         }
