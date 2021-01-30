@@ -28,6 +28,8 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     # is the output value (vertical coordinate on the Curves dialog graph)
     # and the second is the input value. All coordinates have range 0..255
     
+    NPOINTS=nrow(colourmap)
+        
     # Build ACV file
     acv=file(nombreacv, 'wb')
     
@@ -44,9 +46,9 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     
     # R, G and B curves
     for (curve in 1:3) {
-        writeValue(NCOL, acv)  # NCOL points in curve
-        for (j in 1:NCOL) {
-            writePoint(round(255/(NCOL-1)*(j-1)), colourmap[j,curve], acv)
+        writeValue(NPOINTS, acv)  # NCOL points in curve
+        for (j in 1:NPOINTS) {
+            writePoint(255/(NPOINTS-1)*(j-1), colourmap[j,curve], acv)
         }
     }
     
