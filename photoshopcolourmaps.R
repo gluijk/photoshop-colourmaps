@@ -19,7 +19,7 @@ writePoint=function(x, y, fichero) {
     writeBin(as.integer(round(x)), fichero, size=1)
 }
 
-# Function that creates a Photoshop ACV curve file
+# Function that creates a Photoshop ACV curve file from a predefined colourmap
 writePhotoshopACVcurve=function(colourmap, nombreacv) {
     # Adobe Photoshop ACV curve file format:
     # https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/#50577411_pgfId-1056330
@@ -28,8 +28,12 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     # is the output value (vertical coordinate on the Curves dialog graph)
     # and the second is the input value. All coordinates have range 0..255
     
+    # colourmap must be a NPOINTS x 3 matrix containing integer values
+    # in the 0..255 range, corresponding to the output values
+    # for NPOINTS of equally spaced input values
+    # Each column defines one of the 3 RGB channels
     NPOINTS=nrow(colourmap)
-        
+    
     # Build ACV file
     acv=file(nombreacv, 'wb')
     
@@ -106,5 +110,5 @@ for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     
     # Write Photoshop ACV curve file
     writePhotoshopACVcurve(colourmap, nombreacv=paste0(cmname[i],'.acv'))
-
+    
 }
