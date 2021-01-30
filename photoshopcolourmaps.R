@@ -37,7 +37,7 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     # Build ACV file
     acv=file(nombreacv, 'wb')
     
-    # Write header
+    # Header
     ACVVERSION=4  # version 4 = count of curves in the file
     NCURVES=4  # count of curves in the file: RGB, R, G and B
     writeValue(ACVVERSION, acv)  # ACV version
