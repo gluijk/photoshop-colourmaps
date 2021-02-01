@@ -28,7 +28,7 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     # is the output value (vertical coordinate on the Curves dialog graph)
     # and the second is the input value. All coordinates have range 0..255
     
-    # colourmap must be a NPOINTS x 3 matrix containing integer values
+    # colourmap must be a NPOINTS x 3 matrix containing values
     # in the 0..255 range, corresponding to the output values
     # for NPOINTS of equally spaced input values
     # Each column defines one of the 3 RGB channels
