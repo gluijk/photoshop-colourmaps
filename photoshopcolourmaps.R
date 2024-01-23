@@ -4,6 +4,7 @@
 
 library(png)
 library(viridis)
+library(scico)
 
 
 # Auxiliary write binary functions
@@ -59,10 +60,16 @@ writePhotoshopACVcurve=function(colourmap, nombreacv) {
     close(acv)
 }
 
+
+#######################################
+# Colourmaps compilation -> Photoshop ACV curves
+
+
 # Matlab 'Jet' colour palette
 jet.colors=colorRampPalette(
     c("#00007F", "blue", "#007FFF", "cyan",
       "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
+
 
 
 # Viridis colourmap library:
@@ -112,3 +119,14 @@ for (i in 1:NCOLMAPS) {  # loop through all colourmaps
     writePhotoshopACVcurve(colourmap, nombreacv=paste0(cmname[i],'.acv'))
     
 }
+
+
+# Scico colourmap library:
+# https://github.com/thomasp85/scico
+# Fabio Crameri colour palettes:
+# https://www.fabiocrameri.ch/colourmaps/
+scico_palette_show()
+batlow=t(col2rgb(scico(16, palette='batlow')))
+
+# Write Photoshop ACV curve file
+writePhotoshopACVcurve(batlow, nombreacv='batlow.acv')
